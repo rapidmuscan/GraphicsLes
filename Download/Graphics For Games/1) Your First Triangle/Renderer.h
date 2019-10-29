@@ -9,4 +9,5 @@ public:
 
 protected:
 	Mesh*	triangle;
+	Mesh* triangle2;
 };

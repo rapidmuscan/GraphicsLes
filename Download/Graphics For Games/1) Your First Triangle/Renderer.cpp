@@ -2,6 +2,7 @@
 
 Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 	triangle = Mesh::GenerateTriangle();
+	triangle2 = Mesh::GenerateTriangle2();
 
 	currentShader = new Shader(SHADERDIR"basicVertex.glsl",
 		SHADERDIR"colourFragment.glsl");
@@ -14,6 +15,7 @@ Renderer::Renderer(Window &parent) : OGLRenderer(parent)	{
 }
 Renderer::~Renderer(void)	{
 	delete triangle;
+	delete triangle2;
 }
 
 void Renderer::RenderScene()	{
@@ -22,6 +24,7 @@ void Renderer::RenderScene()	{
 
 	glUseProgram(currentShader->GetProgram());
 	triangle->Draw();
+	triangle2->Draw();
 	glUseProgram(0);
 
 	SwapBuffers();	
