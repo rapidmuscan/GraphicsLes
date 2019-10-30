@@ -15,17 +15,28 @@ Shader::Shader(string vFile, string fFile, string gFile) {
 	glAttachShader(program, objects[SHADER_VERTEX]);
 	glAttachShader(program, objects[SHADER_FRAGMENT]);
 	SetDefaultAttributes();
-}Shader ::~Shader(void) {
+
+}
+
+
+Shader ::~Shader(void) {
 	for (int i = 0; i < 3; ++i) {
 		glDetachShader(program, objects[i]);
 		glDeleteShader(objects[i]);
 
 	}
 	glDeleteProgram(program);
-}void Shader::SetDefaultAttributes() {
+
+}
+
+void Shader::SetDefaultAttributes() {
 	 glBindAttribLocation(program, VERTEX_BUFFER, " position ");
 	 glBindAttribLocation(program, COLOUR_BUFFER, " colour ");
-	}GLuint Shader::GenerateShader(string from, GLenum type) {
+	
+}
+
+
+GLuint Shader::GenerateShader(string from, GLenum type) {
 	cout << "Compiling Shader ... " << endl;
 
 	string load;
@@ -57,7 +68,13 @@ Shader::Shader(string vFile, string fFile, string gFile) {
 	cout << " Compiling success !" << endl << endl;
 	loadFailed = false;
 	return shader;
-}bool Shader::LoadShaderFile(string from, string& into) {
+
+}
+
+
+
+
+bool Shader::LoadShaderFile(string from, string& into) {
 	ifstream file;
 	string temp;
 
@@ -79,7 +96,11 @@ Shader::Shader(string vFile, string fFile, string gFile) {
 	cout << into << endl << endl;
 	cout << " Loaded shader text !" << endl << endl;
 	return true;
-}bool Shader::LinkProgram() {
+
+}
+
+
+bool Shader::LinkProgram() {
 	if (loadFailed) {
 		return false;
 
@@ -89,4 +110,7 @@ Shader::Shader(string vFile, string fFile, string gFile) {
 	GLint code;
 	glGetProgramiv(program, GL_LINK_STATUS, &code);
 	return code == GL_TRUE ? true : false;
-}
+
+}
+
+
