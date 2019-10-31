@@ -25,4 +25,5 @@
  GLuint program;
 
  bool loadFailed;
- };
+
+ };

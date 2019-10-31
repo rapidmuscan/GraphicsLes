@@ -49,6 +49,8 @@ int main() {
 		if(Window::GetKeyboard()->KeyDown(KEYBOARD_P))
 			position.z+= 1.0f;
 
+
+		renderer.UpdateScene(w.GetTimer() -> GetTimedMS());
 		renderer.SetRotation(rotation);
 		renderer.SetScale(scale);
 		renderer.SetPosition(position);
