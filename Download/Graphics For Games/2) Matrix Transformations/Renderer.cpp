@@ -22,10 +22,17 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 
 Renderer ::~Renderer(void) {
 	delete triangle;
-}void Renderer::SwitchToPerspective() {
+
+}
+
+void Renderer::SwitchToPerspective() {
 	projMatrix = Matrix4::Perspective(1.0f, 10000.0f,
 		(float)width / (float)height, 45.0f);
-}void Renderer::SwitchToOrthographic() {
+
+}
+
+
+void Renderer::SwitchToOrthographic() {
 	projMatrix = Matrix4::Orthographic(-1.0f, 10000.0f,
 		width / 2.0f, -width / 2.0f, height / 2.0f, -height / 2.0f);
 
@@ -66,4 +73,5 @@ void Renderer::RenderScene() {
 	glUseProgram(0);
 
 	SwapBuffers();
-}
+
+}

@@ -30,18 +30,18 @@ Shader ::~Shader(void) {
 }
 
 void Shader::SetDefaultAttributes() {
-	 glBindAttribLocation(program, VERTEX_BUFFER, " position ");
-	 glBindAttribLocation(program, COLOUR_BUFFER, " colour ");
-	
+	 glBindAttribLocation(program, VERTEX_BUFFER, "position");
+	 glBindAttribLocation(program, COLOUR_BUFFER, "colour");
+	 glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");	
 }
 
 
 GLuint Shader::GenerateShader(string from, GLenum type) {
-	cout << "Compiling Shader ... " << endl;
+	cout << "Compiling Shader ..." << endl;
 
 	string load;
 	if (!LoadShaderFile(from, load)) {
-		cout << " Compiling failed !" << endl;
+		cout << "Compiling failed !" << endl;
 		loadFailed = true;
 		return 0;
 
