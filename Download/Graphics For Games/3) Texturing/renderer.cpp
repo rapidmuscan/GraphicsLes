@@ -7,7 +7,9 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 		SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, 0));
 	if (!triangle->GetTexture()) {
 		return;
-	}	currentShader = new Shader(SHADERDIR "TexturedVertex.glsl",
+
+	}
+	currentShader = new Shader(SHADERDIR "TexturedVertex.glsl",
 		SHADERDIR "texturedfragment.glsl");
 
 	if (!currentShader->LinkProgram()) {
