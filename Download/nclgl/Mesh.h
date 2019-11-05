@@ -11,6 +11,8 @@ public:
 	Mesh(void);
 	~Mesh(void);
 
+	static Mesh* GenerateQuad();
+
 	void SetTexture(GLuint tex) { texture = tex; }
 	GLuint GetTexture() { return texture; }
 	

@@ -18,4 +18,6 @@ protected:
 
 	bool filtering;
 	bool repeating;
-};
+
+};
+
