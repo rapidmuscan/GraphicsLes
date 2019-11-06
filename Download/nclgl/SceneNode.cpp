@@ -7,6 +7,8 @@ SceneNode::SceneNode(Mesh* mesh, Vector4 colour) {
 	this->colour = colour;
 	parent = NULL;
 	modelScale = Vector3(1, 1, 1);
+	boundingRadius = 1.0f;
+	distanceFromCamera = 0.0f;
 
 }
 
@@ -26,7 +28,12 @@ void SceneNode::AddChild(SceneNode* s) {
 
 
  void SceneNode::Draw(const OGLRenderer & r) {
-	 if (mesh) mesh->Draw();}  void SceneNode::Update(float msec) {
+	 if (mesh) mesh->Draw();
+}
+
+
+
+  void SceneNode::Update(float msec) {
 	  if (parent) { // This node has a parent ...
 		  worldTransform = parent -> worldTransform * transform;
 		 
@@ -40,4 +47,5 @@ void SceneNode::AddChild(SceneNode* s) {
 		  (*i) -> Update(msec);
 		 
 	 }
-	  }
+	 
+ }

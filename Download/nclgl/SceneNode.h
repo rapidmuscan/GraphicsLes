@@ -29,6 +29,18 @@ public:
 	virtual void Draw(const OGLRenderer& r);
 
 
+	float GetBoundingRadius() const { return boundingRadius; }
+	 void SetBoundingRadius(float f) { boundingRadius = f; }
+	
+		 float GetCameraDistance() const { return distanceFromCamera; }
+	 void SetCameraDistance(float f) { distanceFromCamera = f; }
+	
+		static bool CompareByCameraDistance(SceneNode * a, SceneNode * b) {
+		 return (a -> distanceFromCamera <
+			 b -> distanceFromCamera) ? true : false;
+		}
+
+
 
 	std::vector < SceneNode* >::const_iterator GetChildIteratorStart() {
 		return children.begin();
@@ -45,4 +57,8 @@ protected:
 	Vector3 modelScale;
 	Vector4 colour;
 	std::vector < SceneNode* > children;
-};
+
+	float distanceFromCamera;
+	float boundingRadius;
+
+};
