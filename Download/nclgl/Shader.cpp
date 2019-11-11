@@ -29,12 +29,6 @@ Shader ::~Shader(void) {
 
 }
 
-void Shader::SetDefaultAttributes() {
-	 glBindAttribLocation(program, VERTEX_BUFFER, "position");
-	 glBindAttribLocation(program, COLOUR_BUFFER, "colour");
-	 glBindAttribLocation(program, TEXTURE_BUFFER, "texCoord");	
-}
-
 
 GLuint Shader::GenerateShader(string from, GLenum type) {
 	cout << "Compiling Shader ..." << endl;
@@ -99,7 +93,12 @@ bool Shader::LoadShaderFile(string from, string& into) {
 
 }
 
-
+void Shader::SetDefaultAttributes() {
+	glBindAttribLocation(program, VERTEX_BUFFER, " position ");
+	glBindAttribLocation(program, COLOUR_BUFFER, " colour ");
+	glBindAttribLocation(program, NORMAL_BUFFER, " normal "); // New !
+	glBindAttribLocation(program, TEXTURE_BUFFER, " texCoord ");
+	}
 bool Shader::LinkProgram() {
 	if (loadFailed) {
 		return false;
@@ -109,6 +108,22 @@ bool Shader::LinkProgram() {
 
 	GLint code;
 	glGetProgramiv(program, GL_LINK_STATUS, &code);
+	if (code == GL_FALSE)
+	{
+		GLint maxLength = 0;
+		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
+
+
+		// The maxLength includes the NULL character
+		std::vector<GLchar> infoLog(maxLength);
+		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
+
+
+		for (auto x : infoLog)
+			std::cout << x;
+		return false;
+	}
+
 	return code == GL_TRUE ? true : false;
 
 }

@@ -2,7 +2,7 @@
 
  #include "../../nclgl/OGLRenderer.h"
  #include "../../nclgl/camera.h"
- #include "HeightMap.h"
+ #include "../../nclgl/HeightMap.h"
 
  class Renderer : public OGLRenderer {
  public:
