@@ -21,7 +21,8 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	if (!heightMap->GetTexture())
 		return;
 
-	SetTextureRepeating(heightMap->GetTexture(), true);	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f),
+	SetTextureRepeating(heightMap->GetTexture(), true);
+	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f),
 		500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)),
 		Vector4(1, 1, 1, 1), (RAW_WIDTH * HEIGHTMAP_X) / 2.0f);
 
@@ -30,7 +31,9 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 
 	glEnable(GL_DEPTH_TEST);
 	init = true;
-}Renderer ::~Renderer(void) {
+
+}
+Renderer ::~Renderer(void) {
 	delete camera;
 	delete heightMap;
 	delete light;
@@ -61,4 +64,5 @@ void Renderer::RenderScene() {
 	glUseProgram(0);
 
 	SwapBuffers();
-}
+
+}
