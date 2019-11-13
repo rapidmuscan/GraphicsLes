@@ -5,7 +5,7 @@
  #include "../../nclgl/OBJmesh.h"
  #include "../../nclgl/heightmap.h"
 
- # define LIGHTNUM 8 // We ’ll generate LIGHTNUM squared lights ...
+ #define LIGHTNUM 8 // We ’ll generate LIGHTNUM squared lights ...
 
  class Renderer : public OGLRenderer {
 public:

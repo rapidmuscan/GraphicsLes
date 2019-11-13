@@ -11,6 +11,7 @@
 		 this -> radius = radius;
 		
 	}
+	 Light();
 	
 	 ~Light(void) {};
 	
