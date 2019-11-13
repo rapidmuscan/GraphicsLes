@@ -1,0 +1,5 @@
+﻿  Renderer.cpp
+  Tutorial15.cpp
+C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\15) Deferred Shading\Renderer.cpp(10,46): error C2512: 'Light': no appropriate default constructor available
+  Generating Code...
+C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\15) Deferred Shading\Tutorial15.cpp(12,44): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
