@@ -3,7 +3,7 @@
  uniform sampler2D diffuseTex ; // Diffuse texture map
  uniform sampler2D bumpTex ; // Bump map
 
- in Vertex {
+ in Vertex { 
  vec4 colour ;
  vec2 texCoord ;
  vec3 normal ;

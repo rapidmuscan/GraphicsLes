@@ -18,6 +18,7 @@ int main() {
 	w.ShowOSPointer(false);
 
 	while(w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)){
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();
 	}
