@@ -16,11 +16,13 @@ int main() {
 
 	w.LockMouseToWindow(true);
 	w.ShowOSPointer(false);
-
+	PlaySound(TEXT("Disturbed.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	while(w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)){
+		
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());
 		renderer.RenderScene();
 	}
+	
 
 	return 0;
 }

@@ -2,8 +2,9 @@
 
 Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	camera = new Camera();
-	heightMap = new HeightMap(TEXTUREDIR"/ terrain.raw");
+	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	quad = Mesh::GenerateQuad();
+
 
 	camera->SetPosition(Vector3(RAW_WIDTH * HEIGHTMAP_X / 2.0f,
 		500.0f, RAW_WIDTH * HEIGHTMAP_X));
