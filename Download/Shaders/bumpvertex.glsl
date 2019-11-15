@@ -4,6 +4,8 @@
  uniform mat4 projMatrix ;
  uniform mat4 textureMatrix ;
 
+ uniform float time;
+
  in vec3 position ;
  in vec4 colour ;
  in vec3 normal ;
@@ -23,16 +25,20 @@
  void main ( void ) {
  mat3 normalMatrix = transpose ( inverse ( mat3 ( modelMatrix )));
 
- OUT.colour = colour ;
- OUT.texCoord = ( textureMatrix * vec4 ( texCoord , 0.0 , 1.0)).xy ;
+ OUT.colour = colour;
+ OUT.texCoord = (textureMatrix * vec4(texCoord, 0.0, 1.0)).xy;
 
  OUT.normal = normalize ( normalMatrix * normalize ( normal ));
  OUT.tangent = normalize ( normalMatrix * normalize ( tangent ));
- OUT.binormal = normalize ( normalMatrix *
- normalize ( cross ( normal , tangent )));
+ OUT.binormal = normalize ( normalMatrix * normalize ( cross ( normal , tangent )));
 
- OUT.worldPos = ( modelMatrix * vec4 ( position ,1)).xyz ;
+ float height = position.y;
+ height += sin(time + position.x) * height * 100000000;
 
- gl_Position = ( projMatrix * viewMatrix * modelMatrix ) *
- vec4 ( position , 1.0);
+ vec3 pos = vec3(position.x, height, position.z);
+
+ OUT.worldPos = ( modelMatrix * vec4 ( pos ,1)).xyz ;
+
+ gl_Position = (( projMatrix * viewMatrix * modelMatrix ) * vec4 ( pos , 1.0));
+
  }

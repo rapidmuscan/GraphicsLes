@@ -17,5 +17,6 @@ protected:
 	Mesh* heightMap;
 	Camera* camera;
 	Light* light;
+	float time;
 
 };

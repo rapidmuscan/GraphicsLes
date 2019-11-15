@@ -2,12 +2,12 @@
 
 
 
-Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
+Renderer::Renderer(Window& parent) : OGLRenderer(parent), time(0.0f) {
 	camera = new Camera(0.0f, 0.0f, Vector3(
 		RAW_WIDTH * HEIGHTMAP_X / 2.0f, 500, RAW_HEIGHT * HEIGHTMAP_Z));
 
 	heightMap = new HeightMap(TEXTUREDIR "terrain.raw");
-	currentShader = new Shader(SHADERDIR "BumpVertex.glsl",
+	currentShader = new Shader(SHADERDIR "bumpvertex.glsl",
 		 SHADERDIR "BumpFragment.glsl");
 
 	heightMap->SetTexture(SOIL_load_OGL_texture(
@@ -49,6 +49,9 @@ Renderer ::~Renderer(void) {
 void Renderer::UpdateScene(float msec) {
 	camera->UpdateCamera(msec);
 	viewMatrix = camera->BuildViewMatrix();
+	glUseProgram(currentShader->GetProgram());
+	time += msec;
+	glUniform1f(glGetUniformLocation(currentShader->GetProgram(), "time"), time);
 
 }
 
