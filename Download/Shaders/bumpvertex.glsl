@@ -28,17 +28,13 @@
  OUT.colour = colour;
  OUT.texCoord = (textureMatrix * vec4(texCoord, 0.0, 1.0)).xy;
 
- OUT.normal = normalize ( normalMatrix * normalize ( normal ));
- OUT.tangent = normalize ( normalMatrix * normalize ( tangent ));
- OUT.binormal = normalize ( normalMatrix * normalize ( cross ( normal , tangent )));
+ OUT.normal = normalize (normalMatrix * normalize ( normal ));
+ OUT.tangent = normalize (normalMatrix * normalize ( tangent ));
+ OUT.binormal = normalize (normalMatrix * normalize ( cross ( normal , tangent )));
 
- float height = position.y;
- height += sin(time + position.x) * height * 100000000;
 
- vec3 pos = vec3(position.x, height, position.z);
+ OUT.worldPos = (modelMatrix * vec4(position ,1)).xyz ;
 
- OUT.worldPos = ( modelMatrix * vec4 ( pos ,1)).xyz ;
-
- gl_Position = (( projMatrix * viewMatrix * modelMatrix ) * vec4 ( pos , 1.0));
+ gl_Position = (( projMatrix * viewMatrix * modelMatrix ) * vec4 ( position , 1.0));
 
  }

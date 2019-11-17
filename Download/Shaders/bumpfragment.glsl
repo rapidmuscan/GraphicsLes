@@ -23,8 +23,7 @@
  // New !
  mat3 TBN = mat3 ( IN.tangent , IN.binormal , IN.normal );
  // New !
- vec3 normal = normalize ( TBN * ( texture ( bumpTex ,
- IN.texCoord ).rgb * 2.0 - 1.0));
+ vec3 normal = normalize ( TBN * ( texture ( bumpTex , IN.texCoord ).rgb * 2.0 - 1.0));
  vec3 incident = normalize ( lightPos - IN.worldPos );
  float lambert = max (0.0 , dot ( incident , normal )); // Different !
 
@@ -41,4 +40,4 @@
  colour += ( lightColour.rgb * sFactor ) * 0.33;
  fragColour = vec4 ( colour * atten * lambert , diffuse.a );
  fragColour.rgb += ( diffuse.rgb * lightColour.rgb ) * 0.1;
- }
+ }

@@ -1,5 +1,2 @@
 ﻿  Renderer.cpp
-  Tutorial15.cpp
-  Generating Code...
-C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\15) Deferred Shading\Tutorial15.cpp(12,44): warning C4244:  'argument': conversion from 'float' to 'unsigned int', possible loss of data
-  Tutorial15.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\Tutorial 15 - Deferred Shading.exe
+  Tutorial15.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\Tutorial 15 - Deferred Shading.exe

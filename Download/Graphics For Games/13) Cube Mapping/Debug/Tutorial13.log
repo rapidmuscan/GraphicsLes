@@ -1,2 +1,10 @@
-﻿  Tutorial13.cpp
+﻿  Renderer.cpp
+  Tutorial13.cpp
+  Generating Code...
+LINK : warning LNK4286: symbol '___glewActiveTexture' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewGetUniformLocation' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewUniform1i' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewUniform3fv' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+LINK : warning LNK4286: symbol '___glewUseProgram' defined in 'glew32.lib(glew.obj)' is imported by 'Renderer.obj'
+glew32.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32.lib(glew.obj)' or at 'C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\vc120.pdb'; linking object as if no debug info
   Tutorial13.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\Tutorial 13 - Cube Mapping.exe

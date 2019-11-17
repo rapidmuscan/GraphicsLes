@@ -3,10 +3,11 @@
     "",
     "\\Download",
     "\\Download\\Graphics For Games",
+    "\\Download\\Graphics For Games\\1) Your First Triangle",
     "\\Download\\Graphics For Games\\12) Per Fragment Lighting B",
     "\\Download\\Graphics For Games\\15) Deferred Shading",
     "\\Download\\Shaders"
   ],
-  "SelectedNode": "\\Download\\Shaders\\bumpvertex.glsl",
+  "SelectedNode": "\\Download\\Graphics For Games\\1) Your First Triangle\\Renderer.h",
   "PreviewInSolutionExplorer": false
 }

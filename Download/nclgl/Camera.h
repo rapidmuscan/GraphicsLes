@@ -57,4 +57,5 @@ protected:
 	float	yaw;
 	float	pitch;
 	Vector3 position;
+	int mode = 1;
 };
