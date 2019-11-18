@@ -36,6 +36,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 		SOIL_LOAD_RGB,
 		SOIL_CREATE_NEW_ID, 0
 	);
+	
 
 	if (!cubeMap || !quad->GetTexture() || !heightMap->GetTexture() ||
 		!heightMap->GetBumpMap()) {
@@ -48,7 +49,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	SetTextureRepeating(heightMap->GetBumpMap(), true);	init = true;
 	waterRotate = 0.0f;
 
-	projMatrix = Matrix4::Perspective(1.0f, 15000.0f,
+	projMatrix = Matrix4::Perspective(1.0f, 15000.0f*20,
 		(float)width / (float)height, 45.0f);
 
 	glEnable(GL_DEPTH_TEST);
@@ -70,7 +71,7 @@ Renderer ::~Renderer(void) {
 void Renderer::UpdateScene(float msec) {
 	camera->UpdateCamera(msec);
 	viewMatrix = camera->BuildViewMatrix();
-	waterRotate += msec / 1000.0f;
+	waterRotate += msec / 4000.0f;
 }void Renderer::RenderScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
@@ -139,8 +140,8 @@ void Renderer::DrawWater() {
 		Matrix4::Scale(Vector3(heightX, 1, heightZ)) *
 		Matrix4::Rotation(90, Vector3(1.0f, 0.0f, 0.0f));
 
-	textureMatrix = Matrix4::Scale(Vector3(1.0f, 1.0f, 1.0f)) *
-		Matrix4::Rotation(waterRotate, Vector3(0.0f, 0.0f, 1.0f));
+	textureMatrix = Matrix4::Scale(Vector3(10.0f, 10.0f, 10.0f)) *
+		Matrix4::Rotation(waterRotate, Vector3(0.0f, 0.0f, 100.0f));
 
 
 	UpdateShaderMatrices();

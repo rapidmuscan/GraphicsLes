@@ -4,7 +4,7 @@
 #include "Renderer.h"
 
 int main() {
-	Window w("Alexander The great", 800, 600, false);
+	Window w("Alexander The great", 1920, 1200, true);
 	if (!w.HasInitialised()) {
 		return -1;
 	}

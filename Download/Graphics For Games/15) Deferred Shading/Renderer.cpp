@@ -166,7 +166,7 @@ void Renderer::FillBuffers() {
 	glUniform1i(glGetUniformLocation(currentShader -> GetProgram(),
 		"bumpTex"), 1);
 
-	projMatrix = Matrix4::Perspective(1.0f, 10000.0f,
+	projMatrix = Matrix4::Perspective(1.0f, 10000.0f*50,
 		(float)width / (float)height, 45.0f);
 	modelMatrix.ToIdentity();
 	UpdateShaderMatrices();
