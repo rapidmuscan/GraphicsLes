@@ -1,4 +1,4 @@
 ﻿  Mesh.cpp
-C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(59,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(72,20): warning C4018:  '<': signed/unsigned mismatch
-  nclgl.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\nclgl.lib
+C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(83,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(96,20): warning C4018: '<': signed/unsigned mismatch
+  nclgl.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\nclgl.lib

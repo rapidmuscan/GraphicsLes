@@ -19,7 +19,7 @@ public:
 
 	virtual void Draw();
 	static Mesh* GenerateTriangle();
-
+	void ParticalsMove(int n);
 	void testcolours();
 	static Mesh* Particles();
 

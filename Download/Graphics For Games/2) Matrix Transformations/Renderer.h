@@ -14,6 +14,7 @@ public:
 	inline void SetScale(float s) { scale = s; }
 	inline void SetRotation(float r) { rotation = r; }
 	inline void SetPosition(Vector3 p) { position = p; }
+	void MakePartMove(int n);
 
 protected:
 	Mesh* triangle;

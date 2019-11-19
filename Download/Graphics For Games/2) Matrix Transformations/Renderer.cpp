@@ -46,6 +46,16 @@ void Renderer::SwitchToOrthographic() {
 
 void Renderer::RenderScene() {
 	glClear(GL_COLOR_BUFFER_BIT);
+	
+	if(Window::GetKeyboard()->KeyDown(KEYBOARD_8))
+	{
+		MakePartMove(8);
+	}
+	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_6))
+	{
+		MakePartMove(2);
+	}
+	
 
 	glUseProgram(currentShader->GetProgram());
 
@@ -69,13 +79,20 @@ void Renderer::RenderScene() {
 	}
 	Vector3 tempPos = position;
 
+	
+
 	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(1000, 1000, 1000));
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
 
 	Particles->Draw();
 	glUseProgram(0);
-
+	
 	SwapBuffers();
 
+}
+
+void Renderer::MakePartMove(int n)
+{
+	Particles->ParticalsMove(n);
 }

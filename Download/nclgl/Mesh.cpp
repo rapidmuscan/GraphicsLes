@@ -6,10 +6,34 @@ void Mesh::testcolours() {
 	bool v = true;
 
 	A[0].x = rand() / (float)RAND_MAX;
-
+	
 	glUnmapBuffer(GL_ARRAY_BUFFER);
 }
 
+void Mesh::ParticalsMove(int n) {
+	glBindBuffer(GL_ARRAY_BUFFER, bufferObject[VERTEX_BUFFER]);
+	Vector3* A = (Vector3*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
+	bool v = true;
+
+	for (int i = 0; i < 10000000; i++)
+	{
+		if (n == 8) {
+			A[i].x *= 1.1f;
+			A[i].y *= 1.1f;
+			A[i].z *= 1.1f;
+		}
+		else if(n == 2)
+		{
+			A[i].x *= 0.9f;
+			A[i].y *= 0.9f;
+			A[i].z *= 0.9f;
+		}
+
+	}
+
+
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+}
 
 Mesh::Mesh(void)
 {
@@ -58,9 +82,9 @@ Mesh* Mesh::Particles() {
 	
 	for (int i = 0; i < n->numVertices; i++)
 	{
-		float x = (float)(rand() % 129) / 128.0f;
-		float y = (float)(rand() % 129) / 128.0f;
-		float z = (float)(rand() % 129) / 128.0f;
+		float x = (float)(((((rand() % 100)*cos(90 - rand() % 180))*sin(180 - rand() % 360))));
+		float y = (float)(((((rand() % 100)*cos(90 - rand() % 180))*cos(180 - rand() % 360))));
+		float z = (float)((((rand() % 100)*sin(90 - rand() % 180))));
 		//float z = 0.5f + (float)(rand() % 129) / 128.0f;
 		n->vertices[i] = Vector3(x,y,z);
 	}
@@ -71,9 +95,9 @@ Mesh* Mesh::Particles() {
 
 	for (int i = 0; i < n->numVertices; i++)
 	{
-		float x = (float)(rand() % 129) / 128.0f;
-		float y = (float)(rand() % 129) / 128.0f;
-		float z =  (float)(rand() % 129) / 128.0f;
+		float x = 1.0f;
+		float y = 0.0f;
+		float z = 0.0f;
 		n->colours[i] = Vector4(x, y, z, 0.2f);
 	}
 
