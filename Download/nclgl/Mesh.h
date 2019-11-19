@@ -20,6 +20,8 @@ public:
 	virtual void Draw();
 	static Mesh* GenerateTriangle();
 
+	void testcolours();
+	static Mesh* Particles();
 
 
 protected:
@@ -44,6 +46,7 @@ protected:
 
 	Vector3* vertices;
 	Vector4* colours;
+	Vector4* newcolours;
 	Vector3* normals;
 
 	GLuint texture;

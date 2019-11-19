@@ -20,10 +20,17 @@ void Renderer::RenderScene()	{
 	glClearColor(0.2f,0.2f,0.2f,1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);	
 
+
+	updateColor(0);
+
 	glUseProgram(currentShader->GetProgram());
 	triangle->Draw();
 	glUseProgram(0);
-
 	SwapBuffers();	
 }
 
+void Renderer::updateColor(float msec)
+{
+	triangle->testcolours();
+
+}

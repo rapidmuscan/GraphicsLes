@@ -11,7 +11,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 		return;
 
 	}
-
+	Particles = Mesh::Particles();
 	init = true;
 
 	camera = new Camera;
@@ -63,13 +63,17 @@ void Renderer::RenderScene() {
 			Matrix4::Rotation(rotation, Vector3(0, 1, 0)) *
 			Matrix4::Scale(Vector3(scale, scale, scale));
 
-		glUniformMatrix4fv(glGetUniformLocation(
-			currentShader->GetProgram(), "modelMatrix"), 1, false,
-			(float*)& modelMatrix);
+		glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
 		triangle->Draw();
-
+	
 	}
+	Vector3 tempPos = position;
 
+	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+
+	Particles->Draw();
 	glUseProgram(0);
 
 	SwapBuffers();

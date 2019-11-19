@@ -1,5 +1,16 @@
 #include "Mesh.h"
 
+void Mesh::testcolours() {
+	glBindBuffer(GL_ARRAY_BUFFER, bufferObject[COLOUR_BUFFER]);
+	Vector4* A = (Vector4*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
+	bool v = true;
+
+	A[0].x = rand() / (float)RAND_MAX;
+
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+}
+
+
 Mesh::Mesh(void)
 {
 	for (int i = 0; i < MAX_BUFFER; ++i)
@@ -39,6 +50,38 @@ Mesh::~Mesh(void)
 }
 
 
+Mesh* Mesh::Particles() {
+
+	Mesh* n = new Mesh();
+	n->numVertices = 10000000;
+	n->vertices = new Vector3[n->numVertices];
+	
+	for (int i = 0; i < n->numVertices; i++)
+	{
+		float x = (float)(rand() % 129) / 128.0f;
+		float y = (float)(rand() % 129) / 128.0f;
+		float z = (float)(rand() % 129) / 128.0f;
+		//float z = 0.5f + (float)(rand() % 129) / 128.0f;
+		n->vertices[i] = Vector3(x,y,z);
+	}
+
+
+	n->colours = new Vector4[n->numVertices];
+
+
+	for (int i = 0; i < n->numVertices; i++)
+	{
+		float x = (float)(rand() % 129) / 128.0f;
+		float y = (float)(rand() % 129) / 128.0f;
+		float z =  (float)(rand() % 129) / 128.0f;
+		n->colours[i] = Vector4(x, y, z, 0.2f);
+	}
+
+	n->type = GL_POINTS;
+	n->BufferData();
+
+	return n;
+}
 Mesh* Mesh::GenerateTriangle() {
 	Mesh* m = new Mesh();
 	m->numVertices = 3;
@@ -57,6 +100,12 @@ Mesh* Mesh::GenerateTriangle() {
 	m->colours[0] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 	m->colours[1] = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 	m->colours[2] = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+
+	m->newcolours = new Vector4[m->numVertices];
+	m->newcolours[0] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+	m->newcolours[1] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+	m->newcolours[2] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+
 	m->BufferData();
 
 	return m;
@@ -81,7 +130,7 @@ void Mesh::GenerateNormals() {
 			unsigned int b = indices[i + 1];
 			unsigned int c = indices[i + 2];
 
-			Vector3 normal = Vector3::Cross(
+			Vector3 normal = Vector3::Cross( 
 				(vertices[b] - vertices[a]), (vertices[c] - vertices[a]));
 
 			normals[a] += normal;
@@ -160,6 +209,7 @@ void Mesh::BufferData() {
 		vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(VERTEX_BUFFER, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(VERTEX_BUFFER);
+
 	if (textureCoords) { // This bit is new !
 		glGenBuffers(1, &bufferObject[TEXTURE_BUFFER]);
 		glBindBuffer(GL_ARRAY_BUFFER, bufferObject[TEXTURE_BUFFER]);
@@ -170,13 +220,21 @@ void Mesh::BufferData() {
 
 	}
 	if (colours) {
-		glGenBuffers(1, &bufferObject[COLOUR_BUFFER]);
-		glBindBuffer(GL_ARRAY_BUFFER, bufferObject[COLOUR_BUFFER]);
-		glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(Vector4),
-			colours, GL_STATIC_DRAW);
-		glVertexAttribPointer(COLOUR_BUFFER, 4, GL_FLOAT, GL_FALSE, 0, 0);
-		glEnableVertexAttribArray(COLOUR_BUFFER);
+		if (bufferObject[COLOUR_BUFFER] == 0) {
+			glGenBuffers(1, &bufferObject[COLOUR_BUFFER]);
 
+			glBindBuffer(GL_ARRAY_BUFFER, bufferObject[COLOUR_BUFFER]);
+
+			glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(Vector4),
+				colours, GL_STATIC_DRAW);
+			glVertexAttribPointer(COLOUR_BUFFER, 4, GL_FLOAT, GL_FALSE, 0, 0);
+			glEnableVertexAttribArray(COLOUR_BUFFER);
+		}
+		else 
+		{
+			Vector4* A = (Vector4*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
+			bool v = true;
+		}
 	}
 
 
@@ -294,4 +352,4 @@ void Mesh::GenerateTangents() {
 	 float factor = 1.0f / (coord1.x * coord2.y - coord2.x * coord1.y);
 	
 	 return axis * factor;
-	}
+	}
