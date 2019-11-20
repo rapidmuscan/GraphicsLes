@@ -16,14 +16,15 @@ protected:
 	void DrawHeightmap();
 	void DrawWater();
 	void DrawSkybox();
-
+	void MakePartMove(int n);
 	Shader* lightShader;
 	Shader* reflectShader;
 	Shader* skyboxShader;
+	Shader* ParticleShader;
 
 	HeightMap* heightMap;
 	Mesh* quad;
-
+	Mesh* Particles;
 	Light* light;
 	Camera* camera;
 

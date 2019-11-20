@@ -1,5 +1,8 @@
 #include "Mesh.h"
 
+#include <cmath>
+#include <random>
+
 void Mesh::testcolours() {
 	glBindBuffer(GL_ARRAY_BUFFER, bufferObject[COLOUR_BUFFER]);
 	Vector4* A = (Vector4*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
@@ -22,12 +25,15 @@ void Mesh::ParticalsMove(int n) {
 			A[i].y *= 1.1f;
 			A[i].z *= 1.1f;
 		}
-		else if(n == 2)
+		else if (n == 2)
 		{
 			A[i].x *= 0.9f;
 			A[i].y *= 0.9f;
 			A[i].z *= 0.9f;
 		}
+		
+		
+		
 
 	}
 
@@ -80,15 +86,37 @@ Mesh* Mesh::Particles() {
 	n->numVertices = 10000000;
 	n->vertices = new Vector3[n->numVertices];
 	
+	std::default_random_engine generator;
+	std::uniform_real_distribution<double> u1Distribution(-1.0, 1.0);
+	std::uniform_real_distribution<double> u2Distribution(0.0, 1.0);
+
 	for (int i = 0; i < n->numVertices; i++)
 	{
-		float x = (float)(((((rand() % 100)*cos(90 - rand() % 180))*sin(180 - rand() % 360))));
-		float y = (float)(((((rand() % 100)*cos(90 - rand() % 180))*cos(180 - rand() % 360))));
-		float z = (float)((((rand() % 100)*sin(90 - rand() % 180))));
-		//float z = 0.5f + (float)(rand() % 129) / 128.0f;
-		n->vertices[i] = Vector3(x,y,z);
-	}
+		//float x = (float)(((((cos(90 - rand() % 180))*sin(180 - rand() % 360)))));
+		//float y = (float)(sin((((cos(90 - rand() % 180))*cos(180 - rand() % 360)))));
+		//float z = (float)(sin(((sin(90 - rand() % 180)))));
+		////float z = 0.5f + (float)(rand() % 129) / 128.0f;
 
+		/*
+		float u1 = randomRange( -1.0f, 1.0f );
+float u2 = randomRange( 0.0f, 1.0f );
+float r = sqrt( 1.0f - u1*u1 );
+float theta = 2.0f*math::pi<float>()*u2;
+
+return Vector3( r*cos( theta ), r*sin( theta ), u1 );
+		
+		*/
+
+		float u1 = u1Distribution(generator);
+		float u2 = u2Distribution(generator);
+		float r = sqrt(1.0f - u1 * u1);
+		float theta = 2.0f * 3.14159f * u2;
+
+		n->vertices[i] = Vector3(r * cos(theta), r * sin(theta), u1);
+	
+	
+	}
+	
 
 	n->colours = new Vector4[n->numVertices];
 

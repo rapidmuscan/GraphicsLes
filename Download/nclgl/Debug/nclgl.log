@@ -1,4 +1,6 @@
 ﻿  Mesh.cpp
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(83,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(96,20): warning C4018: '<': signed/unsigned mismatch
-  nclgl.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\nclgl.lib
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(93,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(110,12): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(111,12): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(124,20): warning C4018:  '<': signed/unsigned mismatch
+  nclgl.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\nclgl.lib

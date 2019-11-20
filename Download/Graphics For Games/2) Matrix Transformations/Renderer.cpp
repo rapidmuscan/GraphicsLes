@@ -55,7 +55,10 @@ void Renderer::RenderScene() {
 	{
 		MakePartMove(2);
 	}
-	
+	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_4))
+	{
+		MakePartMove(4);
+	}
 
 	glUseProgram(currentShader->GetProgram());
 

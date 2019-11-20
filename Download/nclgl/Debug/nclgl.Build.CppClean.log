@@ -9,11 +9,11 @@ c:\users\b8057567\projectsgit\download\nclgl\debug\oglrenderer.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\objmesh.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\mouse.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\mesh.obj
+c:\users\b8057567\projectsgit\download\nclgl\debug\matrix4.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\md5node.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\md5mesh.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\md5filedata.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\md5anim.obj
-c:\users\b8057567\projectsgit\download\nclgl\debug\matrix4.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\light.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\keyboard.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\heightmap.obj
@@ -21,6 +21,7 @@ c:\users\b8057567\projectsgit\download\nclgl\debug\gametimer.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\frustum.obj
 c:\users\b8057567\projectsgit\download\nclgl\debug\camera.obj
 c:\users\b8057567\projectsgit\download\graphics for games\debug\nclgl.lib
+c:\users\b8057567\projectsgit\download\nclgl\debug\mesh.obj.enc
 c:\users\b8057567\projectsgit\download\graphics for games\debug\nclgl.pdb
 c:\users\b8057567\projectsgit\download\nclgl\debug\nclgl.tlog\cl.command.1.tlog
 c:\users\b8057567\projectsgit\download\nclgl\debug\nclgl.tlog\cl.read.1.tlog

@@ -4,7 +4,7 @@
 #include "Renderer.h"
 
 int main() {
-	Window w("Alexander The great", 1920, 1200, true);
+	Window w("Alexander The great", 800, 600, false);
 	if (!w.HasInitialised()) {
 		return -1;
 	}
@@ -17,7 +17,7 @@ int main() {
 	w.LockMouseToWindow(true);
 	w.ShowOSPointer(false);
 
-	PlaySound(TEXT("wildthings.wav"), NULL, SND_FILENAME | SND_ASYNC);
+	PlaySound(TEXT("Disturbed.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	while (w.UpdateWindow() && !Window::GetKeyboard()->KeyDown(KEYBOARD_ESCAPE)) {
 		//glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 		renderer.UpdateScene(w.GetTimer()->GetTimedMS());

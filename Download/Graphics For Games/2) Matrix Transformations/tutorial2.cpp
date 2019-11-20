@@ -14,6 +14,9 @@ int main() {
 		return -1;
 	}
 
+	w.LockMouseToWindow(true);
+	w.ShowOSPointer(false);
+
 	float scale		= 100.0f;
 	float rotation	= 0.0f;
 	Vector3 position(0, 0, -1500.0f);

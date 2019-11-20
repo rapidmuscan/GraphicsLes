@@ -4,11 +4,12 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	camera = new Camera();
 	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	quad = Mesh::GenerateQuad();
+	Particles = Mesh::Particles();
 
 
-	camera->SetPosition(Vector3(RAW_WIDTH * HEIGHTMAP_X / 2.0f, 500.0f, RAW_WIDTH * HEIGHTMAP_X));
+	camera->SetPosition(Vector3(0, 0, 0));
 
-	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)), Vector4(1.0f, 0.0f, 0.0f, 1), (RAW_WIDTH * HEIGHTMAP_X));
+	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)), Vector4(1.0f, 1.0f, 1.0f, 1), (RAW_WIDTH * HEIGHTMAP_X));
 
 	reflectShader = new Shader(SHADERDIR"PerPixelVertex.glsl",
 		SHADERDIR"reflectFragment.glsl");
@@ -16,6 +17,9 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 		SHADERDIR"skyboxFragment.glsl");
 	lightShader = new Shader(SHADERDIR"PerPixelVertex.glsl",
 		SHADERDIR"PerPixelFragment.glsl");
+	ParticleShader = new Shader(SHADERDIR "MatrixVertex.glsl",
+		SHADERDIR "colourFragment.glsl");
+
 
 	if (!reflectShader->LinkProgram() || !lightShader->LinkProgram() ||
 		!skyboxShader->LinkProgram()) {
@@ -75,10 +79,40 @@ void Renderer::UpdateScene(float msec) {
 }void Renderer::RenderScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
+	if (Window::GetKeyboard()->KeyDown(KEYBOARD_8))
+	{
+		MakePartMove(8);
+	}
+	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_6))
+	{
+		MakePartMove(2);
+	}
+	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_4))
+	{
+		MakePartMove(4);
+	}
+
+
 	DrawSkybox();
 	DrawHeightmap();
 	DrawWater();
 
+	SetCurrentShader(ParticleShader);
+
+	glUseProgram(currentShader->GetProgram());
+
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "projMatrix"), 1, false, (float*)& projMatrix);
+
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "viewMatrix"), 1, false, (float*)& viewMatrix);
+
+	
+
+	modelMatrix = Matrix4::Translation(Vector3(0,100,0)) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+
+	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+
+	Particles->Draw();
+	
 	SwapBuffers();
 }void Renderer::DrawSkybox() {
 	glDepthMask(GL_FALSE);
@@ -109,7 +143,7 @@ void Renderer::UpdateScene(float msec) {
 
 	UpdateShaderMatrices();
 	heightMap->Draw();
-
+	
 	glUseProgram(0);
 
 }
@@ -150,4 +184,9 @@ void Renderer::DrawWater() {
 
 	glUseProgram(0);
 
+}
+
+void Renderer::MakePartMove(int n)
+{
+	Particles->ParticalsMove(n);
 }
