@@ -22,7 +22,7 @@ public:
 	void ParticalsMove(int n);
 	void testcolours();
 	static Mesh* Particles();
-
+	static Mesh* ParticlesSky();
 
 protected:
 	void BufferData();
@@ -43,6 +43,7 @@ protected:
 
 	Vector3* tangents;
 	GLuint bumpTexture;
+	
 
 	Vector3* vertices;
 	Vector4* colours;

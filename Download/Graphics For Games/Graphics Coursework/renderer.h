@@ -29,6 +29,7 @@ protected:
 	HeightMap* heightMap;
 	Mesh* quad;
 	Mesh* Particles;
+	Mesh* ParticlesSky;
 	Light* light;
 	Camera* camera;
 

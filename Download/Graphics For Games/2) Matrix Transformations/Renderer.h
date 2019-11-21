@@ -19,6 +19,7 @@ public:
 protected:
 	Mesh* triangle;
 	Mesh* Particles;
+	Mesh* ParticlesSky;
 	float scale;
 	float rotation;
 	Vector3 position;

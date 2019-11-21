@@ -11,6 +11,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 		return;
 
 	}
+	ParticlesSky = Mesh::ParticlesSky();
 	Particles = Mesh::Particles();
 	init = true;
 
@@ -84,11 +85,11 @@ void Renderer::RenderScene() {
 
 	
 
-	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(100, 100, 100));
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
 
-	Particles->Draw();
+	ParticlesSky->Draw();
 	glUseProgram(0);
 	
 	SwapBuffers();

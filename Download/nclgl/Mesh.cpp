@@ -79,7 +79,35 @@ Mesh::~Mesh(void)
 
 }
 
+Mesh* Mesh::ParticlesSky() {
+	Mesh* n = new Mesh();
+	n->numVertices = 100;
+	n->vertices = new Vector3[n->numVertices];
+	for (int i = 0; i < n->numVertices; i++)
+	{
+		float x = (float)(cos(rand() % 129) / 128.0f);
+		float y = 0;
+		float z = (float)(cos(rand() % 129) / 128.0f);
 
+		n->vertices[i] = Vector3(x,y,z);
+	}
+
+	n->colours = new Vector4[n->numVertices];
+
+
+	for (int i = 0; i < n->numVertices; i++)
+	{
+		float x = 1.0f;
+		float y = 0.0f;
+		float z = 0.0f;
+		n->colours[i] = Vector4(x, y, z, 0.2f);
+	}
+
+	n->type = GL_POINTS;
+	n->BufferData();
+
+	return n;
+}
 Mesh* Mesh::Particles() {
 
 	Mesh* n = new Mesh();
