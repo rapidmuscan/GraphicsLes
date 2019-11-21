@@ -2,12 +2,13 @@
 
 Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	camera = new Camera();
+	maxim_elements = 5000.0;
 	heightMap = new HeightMap(TEXTUREDIR"terrain.raw");
 	quad = Mesh::GenerateQuad();
 	Particles = Mesh::Particles();
 
 
-	camera->SetPosition(Vector3(0, 0, 0));
+	camera->SetPosition(Vector3(0, 3000, 0));
 
 	light = new Light(Vector3((RAW_HEIGHT * HEIGHTMAP_X / 2.0f), 500.0f, (RAW_HEIGHT * HEIGHTMAP_Z / 2.0f)), Vector4(1.0f, 1.0f, 1.0f, 1), (RAW_WIDTH * HEIGHTMAP_X));
 
@@ -53,8 +54,7 @@ Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	SetTextureRepeating(heightMap->GetBumpMap(), true);	init = true;
 	waterRotate = 0.0f;
 
-	projMatrix = Matrix4::Perspective(1.0f, 15000.0f*20,
-		(float)width / (float)height, 45.0f);
+	projMatrix = Matrix4::Perspective(1.0f, 15000.0f*20,(float)width / (float)height, 45.0f);
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -75,23 +75,10 @@ Renderer ::~Renderer(void) {
 void Renderer::UpdateScene(float msec) {
 	camera->UpdateCamera(msec);
 	viewMatrix = camera->BuildViewMatrix();
-	waterRotate += msec / 4000.0f;
-}void Renderer::RenderScene() {
+	waterRotate += msec / 4000.0f;	}void Renderer::RenderScene() {
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-
-	if (Window::GetKeyboard()->KeyDown(KEYBOARD_8))
-	{
-		MakePartMove(8);
-	}
-	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_6))
-	{
-		MakePartMove(2);
-	}
-	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_4))
-	{
-		MakePartMove(4);
-	}
-
+	
+	MakePartMove(1);
 
 	DrawSkybox();
 	DrawHeightmap();
@@ -104,15 +91,72 @@ void Renderer::UpdateScene(float msec) {
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "projMatrix"), 1, false, (float*)& projMatrix);
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "viewMatrix"), 1, false, (float*)& viewMatrix);
-
 	
-
-	modelMatrix = Matrix4::Translation(Vector3(0,100,0)) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	modelMatrix = Matrix4::Translation(Vector3(0, 12000, 0)) * Matrix4::Scale(Vector3(1000, 1000, 1000));
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
-
-	Particles->Draw();
 	
+	projMatrix = Matrix4::Orthographic(+1, 1, 1, -1, 1, -1);
+	
+	
+	int widthmapx = (HEIGHTMAP_X / 2) * (1000 / 10) * 10;
+	Vector3 tempposition = Vector3(0, 40000, 0);
+	for (int l = 0; l < widthmapx; l += widthmapx / 25)
+	{
+		for (int j = 0; j < widthmapx; j += widthmapx / 25)
+		{
+			for (int i = 0; i < widthmapx; i += widthmapx / 25)
+			{
+				modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(100, 100, 100));
+				glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+				Particles->Draw();
+				tempposition.x += widthmapx / 25;
+
+			}
+			tempposition.x = 0;
+			tempposition.z += widthmapx / 25;
+		}
+		tempposition.z = 0;
+		tempposition.y += widthmapx / 25;
+	}
+	//for (int i = 0; i < (HEIGHTMAP_X / 2) * (1000 / 10) * 5; i += (HEIGHTMAP_X / 2) * (1000 / 10))
+	//{
+	//	tempposition.x += (HEIGHTMAP_X / 2)*(1000/10)*2;
+	//	modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	//	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+	//	Particles->Draw();
+	//}
+
+	//for (int i = 0; i < (HEIGHTMAP_X / 2) * (1000 / 10) * 5; i += (HEIGHTMAP_X / 2) * (1000 / 10))
+	//{
+	//	tempposition.z += (HEIGHTMAP_X / 2) * (1000 / 10) * 2;
+	//	modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	//	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+	//	Particles->Draw();
+
+	//}
+	//
+	//tempposition = Vector3(0, 12000, 0);
+	//
+	//for (int i = 0; i < (HEIGHTMAP_X / 2) * (1000 / 10) * 5; i += (HEIGHTMAP_X / 2) * (1000 / 10))
+	//{
+	//	tempposition.z += (HEIGHTMAP_X / 2) * (1000 / 10) * 2;
+	//	modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	//	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+	//	Particles->Draw();
+	//}
+
+	//for (int i = 0; i < (HEIGHTMAP_X / 2) * (1000 / 10) * 5; i += (HEIGHTMAP_X / 2) * (1000 / 10))
+	//{
+	//	tempposition.x += (HEIGHTMAP_X / 2) * (1000 / 10) * 2;
+	//	modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(1000, 1000, 1000));
+	//	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+	//	Particles->Draw();
+
+	//}
+
+	projMatrix = Matrix4::Perspective(1.0f, 15000.0f * 20, (float)width / (float)height, 45.0f);
+
 	SwapBuffers();
 }void Renderer::DrawSkybox() {
 	glDepthMask(GL_FALSE);
@@ -124,9 +168,6 @@ void Renderer::UpdateScene(float msec) {
 	glUseProgram(0);
 	glDepthMask(GL_TRUE);
 }void Renderer::DrawHeightmap() {
-	
-
-
 	SetCurrentShader(lightShader);
 	SetShaderLight(*light);
 
@@ -188,5 +229,6 @@ void Renderer::DrawWater() {
 
 void Renderer::MakePartMove(int n)
 {
+
 	Particles->ParticalsMove(n);
 }

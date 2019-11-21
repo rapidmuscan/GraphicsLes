@@ -18,26 +18,26 @@ void Mesh::ParticalsMove(int n) {
 	Vector3* A = (Vector3*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
 	bool v = true;
 
-	for (int i = 0; i < 10000000; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		if (n == 8) {
-			A[i].x *= 1.1f;
-			A[i].y *= 1.1f;
-			A[i].z *= 1.1f;
+			A[i].x *= 1.01f;
+			A[i].y *= 1.01f;
+			A[i].z *= 1.01f;
 		}
 		else if (n == 2)
 		{
-			A[i].x *= 0.9f;
-			A[i].y *= 0.9f;
-			A[i].z *= 0.9f;
+			A[i].x /= 1.01f;
+			A[i].y /= 1.01f;
+			A[i].z /= 1.01f;
 		}
-		
-		
-		
-
+		else if (n == 1)
+		{
+			
+			A[i].y -= 0.1f;
+			
+		}
 	}
-
-
 	glUnmapBuffer(GL_ARRAY_BUFFER);
 }
 
@@ -83,13 +83,14 @@ Mesh::~Mesh(void)
 Mesh* Mesh::Particles() {
 
 	Mesh* n = new Mesh();
-	n->numVertices = 10000000;
+	n->numVertices = 100;
 	n->vertices = new Vector3[n->numVertices];
 	
 	std::default_random_engine generator;
 	std::uniform_real_distribution<double> u1Distribution(-1.0, 1.0);
 	std::uniform_real_distribution<double> u2Distribution(0.0, 1.0);
-
+	std::uniform_real_distribution<double> u3Distribution(0.0, 10.0);
+	int f = u3Distribution(generator);
 	for (int i = 0; i < n->numVertices; i++)
 	{
 		//float x = (float)(((((cos(90 - rand() % 180))*sin(180 - rand() % 360)))));
@@ -99,11 +100,11 @@ Mesh* Mesh::Particles() {
 
 		/*
 		float u1 = randomRange( -1.0f, 1.0f );
-float u2 = randomRange( 0.0f, 1.0f );
-float r = sqrt( 1.0f - u1*u1 );
-float theta = 2.0f*math::pi<float>()*u2;
+		float u2 = randomRange( 0.0f, 1.0f );
+		float r = sqrt( 1.0f - u1*u1 );
+		float theta = 2.0f*math::pi<float>()*u2;
 
-return Vector3( r*cos( theta ), r*sin( theta ), u1 );
+		return Vector3( r*cos( theta ), r*sin( theta ), u1 );
 		
 		*/
 
@@ -112,9 +113,7 @@ return Vector3( r*cos( theta ), r*sin( theta ), u1 );
 		float r = sqrt(1.0f - u1 * u1);
 		float theta = 2.0f * 3.14159f * u2;
 
-		n->vertices[i] = Vector3(r * cos(theta), r * sin(theta), u1);
-	
-	
+		n->vertices[i] = Vector3(r * cos(theta) * f, r * sin(theta) * f, u1 * f);
 	}
 	
 

@@ -13,6 +13,9 @@ public:
 	virtual void UpdateScene(float msec);
 
 protected:
+
+#define modulus_value 50.0
+	double maxim_elements ;
 	void DrawHeightmap();
 	void DrawWater();
 	void DrawSkybox();
@@ -21,6 +24,7 @@ protected:
 	Shader* reflectShader;
 	Shader* skyboxShader;
 	Shader* ParticleShader;
+	double msec2;
 
 	HeightMap* heightMap;
 	Mesh* quad;

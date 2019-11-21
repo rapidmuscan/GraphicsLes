@@ -55,6 +55,42 @@ void Camera::UpdateCamera(float msec)	{
 	}
 }
 
+void Camera::AutoCamera(float msec) {
+	
+	Vector3 checkpoints[3] = {
+		Vector3(120000,120000,120000),
+		Vector3(170000,170000,170000),
+		Vector3(200000,200000,200000)
+	};
+	
+		pitch -= (Window::GetMouse()->GetRelativePosition().y);
+		yaw -= (Window::GetMouse()->GetRelativePosition().x);
+
+		//Bounds check the pitch, to be between straight up and straight down ;)
+		pitch = min(pitch, 90.0f);
+		pitch = max(pitch, -90.0f);
+
+		if (yaw < 0) {
+			yaw += 360.0f;
+		}
+		if (yaw > 360.0f) {
+			yaw -= 360.0f;
+		}
+
+		msec *= 5.0f;
+
+		if (position != checkpoints[currentCheckpoint])
+		{
+			position = Vector3::MoveTowards(position, checkpoints[currentCheckpoint], 500.0f);
+		}
+		else currentCheckpoint++;
+		
+		if (currentCheckpoint == 2) {
+			currentCheckpoint = 0;
+		}
+
+	
+}
 /*
 Generates a view matrix for the camera's viewpoint. This matrix can be sent
 straight to the shader...it's already an 'inverse camera' matrix.

@@ -20,6 +20,17 @@ public:
 		ToZero();
 	}
 
+	static Vector3 MoveTowards(Vector3 current, Vector3 target, float maxDistanceDelta)
+	{
+		Vector3 a = target - current;
+		float magnitude = a.Length();
+		if (magnitude <= maxDistanceDelta || magnitude == 0.0f)
+		{
+			return target;
+		}
+		return current + a / magnitude * maxDistanceDelta;
+	}
+
 	Vector3(const float x, const float y, const float z) {
 		this->x = x;
 		this->y = y;
