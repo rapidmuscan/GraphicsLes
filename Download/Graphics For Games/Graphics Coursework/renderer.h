@@ -4,6 +4,8 @@
 #include "../../nclgl/Camera.h"
 #include "../../nclgl/HeightMap.h"
 
+# define POST_PASSES 10
+
 class Renderer : public OGLRenderer {
 public:
 	Renderer(Window& parent);
@@ -19,6 +21,7 @@ protected:
 	void DrawHeightmap();
 	void DrawWater();
 	void DrawSkybox();
+	void DrawParticles();
 	void MakePartMove(int n);
 	Shader* lightShader;
 	Shader* reflectShader;
@@ -28,6 +31,7 @@ protected:
 
 	HeightMap* heightMap;
 	Mesh* quad;
+	Mesh* postQuad;
 	Mesh* Particles;
 	Mesh* ParticlesSky;
 	Light* light;
@@ -36,5 +40,15 @@ protected:
 	GLuint cubeMap;
 
 	float waterRotate;
+	void PresentScene();
+	void DrawPostProcess();
+	void DrawScene();
+	Shader* sceneShader;
+	Shader * processShader;
+
+	GLuint bufferFBO;
+	GLuint processFBO;
+	GLuint bufferColourTex[2];
+	GLuint bufferDepthTex;
 
 };

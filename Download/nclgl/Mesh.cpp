@@ -34,9 +34,14 @@ void Mesh::ParticalsMove(int n) {
 		else if (n == 1)
 		{
 			
-			A[i].y -= 0.1f;
+			A[i].y -= 3.0f;
+			if (A[i].y <= -1000.0f) {
+				A[i].y = -500.0f;
+			}
 			
 		}
+		
+		
 	}
 	glUnmapBuffer(GL_ARRAY_BUFFER);
 }

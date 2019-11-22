@@ -1,9 +1,29 @@
-﻿  Mesh.cpp
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(86,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(98,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(121,8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(122,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(139,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(140,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\alsab\Documents\GraphicsLes\Download\nclgl\Mesh.cpp(151,20): warning C4018: '<': signed/unsigned mismatch
-  nclgl.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\nclgl.lib
+﻿  Camera.cpp
+  Frustum.cpp
+  GameTimer.cpp
+  HeightMap.cpp
+  Keyboard.cpp
+  Light.cpp
+  Matrix4.cpp
+  MD5Anim.cpp
+  MD5FileData.cpp
+  MD5Mesh.cpp
+  MD5Node.cpp
+  Mesh.cpp
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(91,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(103,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(126,8): warning C4244:  'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(127,20): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(144,12): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(145,12): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+  Mouse.cpp
+  OBJMesh.cpp
+  OGLRenderer.cpp
+  Plane.cpp
+  Quaternion.cpp
+  SceneNode.cpp
+  Shader.cpp
+  Window.cpp
+  Generating Code...
+C:\Users\b8057567\ProjectsGit\Download\nclgl\Mesh.cpp(156,20): warning C4018:  '<': signed/unsigned mismatch
+  nclgl.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\nclgl.lib

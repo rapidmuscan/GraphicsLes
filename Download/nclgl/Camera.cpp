@@ -57,10 +57,11 @@ void Camera::UpdateCamera(float msec)	{
 
 void Camera::AutoCamera(float msec) {
 	
-	Vector3 checkpoints[3] = {
-		Vector3(120000,120000,120000),
-		Vector3(170000,170000,170000),
-		Vector3(200000,200000,200000)
+	Vector3 checkpoints[4] = {
+		Vector3(1000,15000,1000),
+		Vector3(80000,15000,80000),
+		Vector3(160000,15000,1000),
+		Vector3(1000,15000,80000)
 	};
 	
 		pitch -= (Window::GetMouse()->GetRelativePosition().y);
@@ -81,11 +82,11 @@ void Camera::AutoCamera(float msec) {
 
 		if (position != checkpoints[currentCheckpoint])
 		{
-			position = Vector3::MoveTowards(position, checkpoints[currentCheckpoint], 500.0f);
+			position = Vector3::MoveTowards(position, checkpoints[currentCheckpoint], 100.0f);
 		}
 		else currentCheckpoint++;
 		
-		if (currentCheckpoint == 2) {
+		if (currentCheckpoint == 4) {
 			currentCheckpoint = 0;
 		}
 
