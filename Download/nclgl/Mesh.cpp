@@ -59,6 +59,7 @@ Mesh::Mesh(void)
 	colours = NULL;
 	type = GL_TRIANGLES;
 	texture = 0;
+	texture2 = 0;
 	textureCoords = NULL;
 	normals = NULL;
 	tangents = NULL;
@@ -113,6 +114,8 @@ Mesh* Mesh::ParticlesSky() {
 
 	return n;
 }
+
+
 Mesh* Mesh::Particles() {
 
 	Mesh* n = new Mesh();
@@ -360,6 +363,9 @@ void Mesh::Draw() {
 	
 	glActiveTexture(GL_TEXTURE1); 
 	glBindTexture(GL_TEXTURE_2D, bumpTexture);
+
+	glActiveTexture(GL_TEXTURE6);
+	glBindTexture(GL_TEXTURE_2D, texture2);
 
 	glBindVertexArray(arrayObject);
 	 if (bufferObject[INDEX_BUFFER]) {

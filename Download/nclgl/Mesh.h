@@ -15,7 +15,9 @@ public:
 	void SetBumpMap(GLuint tex) { bumpTexture = tex; }
 	GLuint GetBumpMap() { return bumpTexture; }
 	void SetTexture(GLuint tex) { texture = tex; }
+	void SetTexture2(GLuint tex) { texture2 = tex; }
 	GLuint GetTexture() { return texture; }
+	GLuint GetTexture2() { return texture2; }
 
 	virtual void Draw();
 	static Mesh* GenerateTriangle();
@@ -51,6 +53,7 @@ protected:
 	Vector3* normals;
 
 	GLuint texture;
+	GLuint texture2;
 	Vector2* textureCoords;
 };
 

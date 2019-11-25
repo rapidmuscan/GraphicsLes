@@ -23,6 +23,7 @@ protected:
 	void DrawSkybox();
 	void DrawParticles();
 	void MakePartMove(int n);
+	void PressKeyFunction();
 	Shader* lightShader;
 	Shader* reflectShader;
 	Shader* skyboxShader;
@@ -32,10 +33,19 @@ protected:
 	HeightMap* heightMap;
 	Mesh* quad;
 	Mesh* postQuad;
+
+	Mesh* viewport;
+
 	Mesh* Particles;
 	Mesh* ParticlesSky;
 	Light* light;
 	Camera* camera;
+
+	bool Patricalmove = true;
+	bool Autocameraon = true;
+	bool Killyoureyesmode = false;
+	float blurval = 0.1;
+
 
 	GLuint cubeMap;
 
@@ -45,10 +55,13 @@ protected:
 	void DrawScene();
 	Shader* sceneShader;
 	Shader * processShader;
-
+	float texchange;
+	float totaltimechange;
+	float timePassed;
 	GLuint bufferFBO;
 	GLuint processFBO;
 	GLuint bufferColourTex[2];
 	GLuint bufferDepthTex;
 
+	void combineBuffers();
 };

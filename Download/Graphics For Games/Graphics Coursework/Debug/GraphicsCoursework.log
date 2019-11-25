@@ -1,3 +1,4 @@
 ﻿  renderer.cpp
-C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Graphics Coursework\renderer.cpp(239,16): warning C4244:  'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Graphics Coursework\Renderer.h(47,21): warning C4305:  'initializing': truncation from 'double' to 'float'
+C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Graphics Coursework\renderer.cpp(154,16): warning C4305:  '=': truncation from 'double' to 'float'
   GraphicsCoursework.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\GraphicsCoursework.exe
