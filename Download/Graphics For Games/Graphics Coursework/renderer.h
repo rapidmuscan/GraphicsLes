@@ -1,5 +1,5 @@
 #pragma once
-
+//Made By Alexander Sablin 180575673
 #include "../../nclgl/OGLRenderer.h"
 #include "../../nclgl/Camera.h"
 #include "../../nclgl/HeightMap.h"
@@ -33,9 +33,7 @@ protected:
 	HeightMap* heightMap;
 	Mesh* quad;
 	Mesh* postQuad;
-
 	Mesh* viewport;
-
 	Mesh* Particles;
 	Mesh* ParticlesSky;
 	Light* light;
@@ -62,7 +60,7 @@ protected:
 	GLuint processFBO;
 	GLuint bufferColourTex[2];
 	GLuint bufferDepthTex;
-	int ic = 1;
+	
 
 	void combineBuffers();
 };

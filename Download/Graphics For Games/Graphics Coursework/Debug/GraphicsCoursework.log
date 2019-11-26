@@ -1,1 +1,3 @@
-﻿  GraphicsCoursework.vcxproj -> C:\Users\alsab\Documents\GraphicsLes\Download\Graphics For Games\Debug\GraphicsCoursework.exe
+﻿  Graphics Coursework.cpp
+C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Graphics Coursework\Renderer.h(45,21): warning C4305:  'initializing': truncation from 'double' to 'float'
+  GraphicsCoursework.vcxproj -> C:\Users\b8057567\ProjectsGit\Download\Graphics For Games\Debug\GraphicsCoursework.exe

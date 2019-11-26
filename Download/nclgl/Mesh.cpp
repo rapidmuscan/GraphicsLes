@@ -1,3 +1,4 @@
+//Made By Alexander Sablin 180575673
 #include "Mesh.h"
 
 #include <cmath>
@@ -18,7 +19,7 @@ void Mesh::ParticalsMove(int n) {
 	Vector3* A = (Vector3*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
 	bool v = true;
 
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 1000; i++)
 	{
 		if (n == 8) {
 			A[i].x *= 1.01f;
@@ -119,7 +120,7 @@ Mesh* Mesh::ParticlesSky() {
 Mesh* Mesh::Particles() {
 
 	Mesh* n = new Mesh();
-	n->numVertices = 100;
+	n->numVertices = 1000;
 	n->vertices = new Vector3[n->numVertices];
 	
 	std::default_random_engine generator;

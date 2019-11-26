@@ -1,10 +1,7 @@
 #include "Camera.h"
+//Made By Alexander Sablin 180575673
 
-/*
-Polls the camera for keyboard / mouse movement.
-Should be done once per frame! Pass it the msec since
-last frame (default value is for simplicities sake...)
-*/
+
 void Camera::UpdateCamera(float msec)	{
 	//Update the mouse by how much
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_L))
@@ -33,17 +30,17 @@ void Camera::UpdateCamera(float msec)	{
 		msec *= 5.0f;
 
 		if (Window::GetKeyboard()->KeyDown(KEYBOARD_W)) {
-			position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * msec/2;
+			position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * msec;
 		}
 		if (Window::GetKeyboard()->KeyDown(KEYBOARD_S)) {
-			position -= Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * msec/2;
+			position -= Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(0, 0, -1) * msec;
 		}
 
 		if (Window::GetKeyboard()->KeyDown(KEYBOARD_A)) {
-			position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(-1, 0, 0) * msec/2;
+			position += Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(-1, 0, 0) * msec;
 		}
 		if (Window::GetKeyboard()->KeyDown(KEYBOARD_D)) {
-			position -= Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(-1, 0, 0) * msec/2;
+			position -= Matrix4::Rotation(yaw, Vector3(0, 1, 0)) * Vector3(-1, 0, 0) * msec;
 		}
 
 		if (Window::GetKeyboard()->KeyDown(KEYBOARD_SHIFT)) {
