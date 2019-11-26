@@ -1,4 +1,6 @@
+#include "../../nclgl/window.h"
 #include"Renderer.h"
+
 
 Renderer::Renderer(Window& parent) : OGLRenderer(parent) {
 	totaltimechange = 10.0f;
@@ -138,24 +140,30 @@ Renderer ::~Renderer(void) {
 void Renderer::PressKeyFunction()
 {
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_M)){
-		bool Patricalmove = true;
+		 Patricalmove = true;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_N)) {
-		bool Patricalmove = false;
+		Patricalmove = false;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_K)) {
-		bool Autocameraon = true;
+		Autocameraon = true;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_L)) {
-		bool Autocameraon = false;
+		Autocameraon = false;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_P)) {
-		bool Killyoureyesmode = false;
+		Killyoureyesmode = false;
 		blurval = 0.1;
 	}
 	if (Window::GetKeyboard()->KeyDown(KEYBOARD_O)) {
-		bool Killyoureyesmode = true;
+		Killyoureyesmode = true;
 		blurval = 1.0;
+	}
+	if (Window::GetKeyboard()->KeyDown(KEYBOARD_V)) {
+		changewor = true;
+	}
+	if (Window::GetKeyboard()->KeyDown(KEYBOARD_C)) {
+		changewor = false;
 	}
 	
 }
@@ -169,17 +177,19 @@ void Renderer::UpdateScene(float msec) {
 		camera->UpdateCamera(msec);
 
 	viewMatrix = camera->BuildViewMatrix();
-	waterRotate += msec / 4000.0f;	timePassed += msec / 1000;	texchange = timePassed / totaltimechange;	if (texchange > 1)		texchange = 1.0f;	PressKeyFunction();}
+	waterRotate += msec / 4000.0f;		int i = 1;	if (changewor == true)	{		if (timePassed < 0) {			timePassed = 0;		}		timePassed += msec / 1000;		texchange = timePassed / totaltimechange;		if (texchange > 1)			texchange = 1.0f;	}	else 	{		if (timePassed > 10) {			timePassed = 10;		}		if (msec > 1000.0f) {
+			return;
+		}		timePassed -= msec / 1000;		texchange = timePassed / totaltimechange;		if (timePassed < 0) timePassed = 0.0f;		if (texchange < 0)			texchange = 0.0f;	}	PressKeyFunction();}
 void Renderer::RenderScene() {
 
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 
 glBindFramebuffer(GL_FRAMEBUFFER, bufferFBO);
 glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 projMatrix = Matrix4::Perspective(1.0f, 15000.0f * 20, (float)width / (float)height, 45.0f);
-if (Patricalmove == true)
-MakePartMove(1);
+
+if (Patricalmove == true) MakePartMove(1);
 
 DrawSkybox();
 DrawHeightmap();
@@ -271,31 +281,31 @@ void Renderer::combineBuffers() {
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "viewMatrix"), 1, false, (float*)& viewMatrix);
 
 
-	//glPointSize(40.0f);
+	
 
-	//int widthmapx = (HEIGHTMAP_X / 2) * (1000 / 10) * 10; //16.0f * 20
-	//Vector3 tempposition = Vector3(0, 4000, 0);
-	//for (int l = 0; l < widthmapx; l += widthmapx / 20)
-	//{
-	//	for (int j = 0; j < widthmapx; j += widthmapx / 20)
-	//	{
-	//		for (int i = 0; i < widthmapx; i += widthmapx / 20)
-	//		{
-	//			modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(100, 100, 100));
-	//			glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
-	//			Particles->Draw();
-	//			tempposition.x += widthmapx / 20;
+	int widthmapx = (HEIGHTMAP_X / 2) * (1000 / 10) * 10; //16.0f * 20
+	Vector3 tempposition = Vector3(0, 4000, 0);
+	for (int l = 0; l < widthmapx; l += widthmapx / 20)
+	{
+		for (int j = 0; j < widthmapx; j += widthmapx / 20)
+		{
+			for (int i = 0; i < widthmapx; i += widthmapx / 20)
+			{
+				modelMatrix = Matrix4::Translation(tempposition) * Matrix4::Scale(Vector3(100, 100, 100));
+				glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
+				Particles->Draw();
+				tempposition.x += widthmapx / 20;
 
-	//		}
-	//		tempposition.x = 0;
-	//		tempposition.z += widthmapx / 20;
-	//	}
-	//	tempposition.z = 0;
-	//	tempposition.y += widthmapx / 20;
-	//}
-/*
+			}
+			tempposition.x = 0;
+			tempposition.z += widthmapx / 20;
+		}
+		tempposition.z = 0;
+		tempposition.y += widthmapx / 20;
+	}
+
 	tempposition = Vector3(0, 40000, 0);
-*/
+
 
 
 

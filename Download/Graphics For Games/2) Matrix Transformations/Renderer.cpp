@@ -58,7 +58,7 @@ void Renderer::RenderScene() {
 	}
 	else if (Window::GetKeyboard()->KeyDown(KEYBOARD_4))
 	{
-		MakePartMove(4);
+		MakePartMove(12);
 	}
 
 	glUseProgram(currentShader->GetProgram());
@@ -85,7 +85,7 @@ void Renderer::RenderScene() {
 
 	
 
-	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(100, 100, 100));
+	modelMatrix = Matrix4::Translation(tempPos) * Matrix4::Scale(Vector3(100000, 1, 100000));
 
 	glUniformMatrix4fv(glGetUniformLocation(currentShader->GetProgram(), "modelMatrix"), 1, false, (float*)& modelMatrix);
 
@@ -98,5 +98,5 @@ void Renderer::RenderScene() {
 
 void Renderer::MakePartMove(int n)
 {
-	Particles->ParticalsMove(n);
+	ParticlesSky->ParticalsMove(n);
 }

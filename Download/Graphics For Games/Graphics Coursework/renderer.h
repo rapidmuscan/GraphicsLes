@@ -48,20 +48,21 @@ protected:
 
 
 	GLuint cubeMap;
-
+	bool changewor = false;
 	float waterRotate;
 	void PresentScene();
 	void DrawPostProcess();
 	void DrawScene();
 	Shader* sceneShader;
 	Shader * processShader;
-	float texchange;
+	float texchange = 0;
 	float totaltimechange;
 	float timePassed;
 	GLuint bufferFBO;
 	GLuint processFBO;
 	GLuint bufferColourTex[2];
 	GLuint bufferDepthTex;
+	int ic = 1;
 
 	void combineBuffers();
 };

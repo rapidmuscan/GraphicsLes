@@ -35,8 +35,8 @@ void Mesh::ParticalsMove(int n) {
 		{
 			
 			A[i].y -= 3.0f;
-			if (A[i].y <= -1000.0f) {
-				A[i].y = -500.0f;
+			if (A[i].y <= -600.0f) {
+				A[i].y += 500.0f;
 			}
 			
 		}
@@ -125,8 +125,7 @@ Mesh* Mesh::Particles() {
 	std::default_random_engine generator;
 	std::uniform_real_distribution<double> u1Distribution(-1.0, 1.0);
 	std::uniform_real_distribution<double> u2Distribution(0.0, 1.0);
-	std::uniform_real_distribution<double> u3Distribution(0.0, 10.0);
-	int f = u3Distribution(generator);
+	
 	for (int i = 0; i < n->numVertices; i++)
 	{
 		//float x = (float)(((((cos(90 - rand() % 180))*sin(180 - rand() % 360)))));
@@ -149,7 +148,7 @@ Mesh* Mesh::Particles() {
 		float r = sqrt(1.0f - u1 * u1);
 		float theta = 2.0f * 3.14159f * u2;
 
-		n->vertices[i] = Vector3(r * cos(theta) * f, r * sin(theta) * f, u1 * f);
+		n->vertices[i] = Vector3(r * cos(theta), r * sin(theta), u1);
 	}
 	
 
